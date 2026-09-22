@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>RAW GAME</title>
+    <title>RAW GAME | Running Payload</title>
     <style>
       html,
       body {
@@ -121,6 +121,17 @@
       .warn {
         color: #d8c07f;
       }
+      .credit {
+        position: fixed;
+        right: 0;
+        bottom: 16px;
+        left: 0;
+        color: #687890;
+        font-size: 11px;
+        letter-spacing: .08em;
+        text-align: center;
+      }
+      .credit strong { color: #aab8cc; font-weight: 650; }
       .safe {
         color: #7fd0a0;
       }
@@ -129,6 +140,66 @@
       }
       code {
         color: #9fb3d0;
+      }
+      :root {
+        color-scheme: dark;
+        --bg: #080b12;
+        --panel: rgba(18, 25, 38, .84);
+        --line: rgba(146, 169, 205, .18);
+        --text: #eef4ff;
+        --accent: #77f2c3;
+      }
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+      body {
+        background: radial-gradient(circle at 50% 12%, rgba(38, 96, 130, .22), transparent 40%), var(--bg);
+        color: var(--text);
+      }
+      #brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 20px 24px;
+        background: rgba(8, 11, 18, .72);
+        border-bottom-color: var(--line);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, .2);
+        backdrop-filter: blur(18px);
+        text-align: left;
+      }
+      #brand img { width: 34px; height: 34px; margin-right: 0; border-radius: 10px; box-shadow: 0 0 0 4px rgba(119, 242, 195, .12); }
+      #brand b { color: var(--text); font-size: 16px; font-weight: 750; letter-spacing: .2em; }
+      #spin { border-color: rgba(146, 169, 205, .18); border-top-color: var(--accent); }
+      #wrap {
+        width: min(900px, calc(100% - 36px));
+        margin: clamp(28px, 8vh, 82px) auto;
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--panel);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, .38), inset 0 1px rgba(255, 255, 255, .05);
+        backdrop-filter: blur(22px);
+      }
+      body.log #wrap { padding: 30px; }
+      body.log #state { margin-bottom: 18px; font-size: 25px; font-weight: 750; letter-spacing: -.03em; }
+      body.log #out {
+        min-height: 260px;
+        height: calc(100vh - 240px);
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(5, 8, 14, .72);
+        color: #b9c6da;
+        font: 12px/1.65 "Cascadia Code", Consolas, monospace;
+      }
+      .ok, .safe { color: var(--accent); }
+      .bad, .danger { color: #ff8f9a; }
+      .warn { color: #ffd479; }
+      @media (max-width: 520px) {
+        #brand { padding: 18px; }
+        #wrap, body.log #wrap { width: calc(100% - 24px); padding: 20px; border-radius: 20px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #spin { animation: none; }
       }
     </style>
   </head>
@@ -139,7 +210,7 @@
         alt=""
         width="28"
         height="28"
-      /><b>RAW GAME</b>
+      /><b>PS4 HOST</b>
     </div>
     <div id="spin"></div>
     <div id="msg">Restart your console</div>
@@ -147,6 +218,7 @@
       <div id="state"></div>
       <div id="out"></div>
     </div>
+    <div class="credit">credit: <strong>rawgame</strong></div>
     <script type="module">
       import "./jb.js?v=10";
     </script>
